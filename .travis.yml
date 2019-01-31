@@ -31,7 +31,7 @@ install:
   - cp config/database.yml{.example,}
   - unset BUNDLE_GEMFILE
   - gem uninstall bundler
-  - gem install bundler -v "${BUNDLER_VERSION}"
+  - gem install bundler -v "< 2"
   - bundle install
   - bin/rake db:setup
   - bin/rake generate_secret_token
