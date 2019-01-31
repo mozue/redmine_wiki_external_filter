@@ -28,7 +28,7 @@ class WikiExternalFilterMacrosTest < ActionView::TestCase
                      TEXTILE
     cache_key = WikiExternalFilter::Filter.construct_cache_key(macro, name)
     cache = Rails.cache.read(cache_key)
-    assert_equal(Magick::Image.read(fixture_path("plantuml.png")),
+    assert_equal(plantuml(source),
                  Magick::Image.read_inline(Base64.encode64(cache[index])))
   end
 
@@ -73,7 +73,7 @@ digraph finite_state_machine {
                      TEXTILE
     cache_key = WikiExternalFilter::Filter.construct_cache_key(macro, name)
     cache = Rails.cache.read(cache_key)
-    assert_equal(Magick::Image.read(fixture_path("graphviz.svg")),
+    assert_equal(dot(source),
                  Magick::Image.read_inline(Base64.encode64(cache[index])))
   end
 end
