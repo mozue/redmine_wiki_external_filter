@@ -1,3 +1,4 @@
+require_relative "wiki_external_filter/version"
 require_dependency "wiki_external_filter/filter"
 require_dependency "wiki_external_filter/renderer"
 
@@ -8,7 +9,7 @@ Redmine::Plugin.register :wiki_external_filter do
   author 'Kouhei Sutou, Alexander Tsvyashchenko (the original author)'
   description 'Processes given text using external command and renders its output'
   author_url 'https://github.com/clear-code/redmine_wiki_external_filter'
-  version '1.0.0'
+  version WikiExternalFilter::VERSION
   requires_redmine :version_or_higher => '3.4.0'
 
   settings :default => {'cache_seconds' => '60'}, :partial => 'wiki_external_filter/settings'
