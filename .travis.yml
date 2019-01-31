@@ -28,6 +28,7 @@ install:
   - ln -s ../../redmine_wiki_external_filter wiki_external_filter
   - cd ../
   - cp config/database.yml{.example,}
+  - pwd
   - bundle install
   - bin/rake db:setup
   - bin/rake generate_secret_token
