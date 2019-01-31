@@ -11,7 +11,7 @@ Redmine::Plugin.register :wiki_external_filter do
   version '1.0.0'
   requires_redmine :version_or_higher => '3.4.0'
 
-  settings :default => {'cache_seconds' => '0'}, :partial => 'wiki_external_filter/settings'
+  settings :default => {'cache_seconds' => '60'}, :partial => 'wiki_external_filter/settings'
 
   config = WikiExternalFilter::Filter.config
   Rails.logger.debug "Config: #{config.inspect}"
