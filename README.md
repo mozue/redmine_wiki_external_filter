@@ -1,5 +1,7 @@
 # Redmine Wiki External Filter plugin
 
+[![](https://travis-ci.org/clear-code/redmine_wiki_external_filter.svg?branch=master)](https://travis-ci.org/clear-code/redmine_wiki_external_filter)
+
 This is a fork maintained by the followings:
 
   * Kouhei Sutou <kou@clear-code.com>
@@ -43,6 +45,15 @@ content and processes it using the filter.
 
 Macros already bundled with current release are listed below, but adding new
 ones is typically as easy as adding several lines in plugin config file.
+
+## Supported Redmine
+
+  * 3.4
+  * 4.0
+
+See [CI
+result](https://travis-ci.org/clear-code/redmine_wiki_external_filter)
+for details.
 
 ## Installation
 
