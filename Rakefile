@@ -23,5 +23,5 @@ task :tag do
      "-a",
      "-m", "#{WikiExternalFilter::VERSION} has been released!!!",
     WikiExternalFilter::VERSION)
-  sh("git", "push" "--tags")
+  sh("git", "push", "--tags")
 end
