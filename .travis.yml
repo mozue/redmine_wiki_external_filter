@@ -10,7 +10,7 @@ addons:
       - graphviz
       - plantuml
 
-service:
+services:
   - mysql
 
 matrix:
