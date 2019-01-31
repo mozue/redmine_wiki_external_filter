@@ -1,7 +1,7 @@
 require_dependency "wiki_external_filter/filter"
 require_dependency "wiki_external_filter/renderer"
 
-Rails.logger.info 'Starting wiki_external_filter plugin for Redmin'
+Rails.logger.info 'Starting wiki_external_filter plugin for Redmine'
 
 Redmine::Plugin.register :wiki_external_filter do
   name 'Wiki External Filter Plugin'
