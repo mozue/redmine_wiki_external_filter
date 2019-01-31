@@ -15,7 +15,7 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-require_relative "wiki_external_filter/version"
+require_relative "lib/wiki_external_filter/version"
 
 desc "Tag #{WikiExternalFilter::VERSION}"
 task :tag do
