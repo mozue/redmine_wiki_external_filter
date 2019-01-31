@@ -10,7 +10,7 @@ class WikiExternalFilterController < ApplicationController
 
     Rails.logger.debug "Config:#{config} Key: #{cache_key} Content: #{content}"
 
-    if (content)
+    if content
       send_data content[index], :type => config[macro]['outputs'][index]['content_type'], :disposition => 'inline', :filename => filename
     else
       render_404
