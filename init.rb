@@ -4,13 +4,13 @@ require_dependency "wiki_external_filter/renderer"
 Rails.logger.info 'Starting wiki_external_filter plugin for Redmine'
 
 Redmine::Plugin.register :wiki_external_filter do
-  name 'Wiki External Filter Plugin'
-  author 'Alexander Tsvyashchenko'
+  name 'Wiki External Filter plugin'
+  author 'Kouhei Sutou, Alexander Tsvyashchenko (the original author)'
   description 'Processes given text using external command and renders its output'
-  author_url 'http://www.ndl.kiev.ua'
-  version '0.0.3 maxrossello'
-  requires_redmine :version_or_higher => '2.0.0'
-  
+  author_url 'https://github.com/clear-code/redmine_wiki_external_filter'
+  version '1.0.0'
+  requires_redmine :version_or_higher => '3.4.0'
+
   settings :default => {'cache_seconds' => '0'}, :partial => 'wiki_external_filter/settings'
 
   config = WikiExternalFilter::Filter.config
