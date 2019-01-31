@@ -7,7 +7,8 @@ module WikiExternalFilterHelper
     unless @config
       config_file = "#{Rails.root}/config/wiki_external_filter.yml"
       unless File.exists?(config_file)
-        raise "Config not found: #{config_file}"
+        config_file = File.expand_path("../../config/wiki_external_filter.yml",
+                                       __dir__)
       end
       @config = YAML.load_file(config_file)[Rails.env]
     end

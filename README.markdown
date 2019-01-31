@@ -39,7 +39,6 @@ Installation
    Redmine site.
 4. After installation it's **strongly recommended** to go to plugin settings and
    configure caching: Administration -> Plugins -> Wiki External Filter Plugin: Configure and follow instructions.
-5. Copy `config/wiki_external_filter.yml` to `config/wiki_external_filter.yml` in your redmine root. Check all the binary paths inside the file.
 
 Specific filters installation instructions are below.
 
