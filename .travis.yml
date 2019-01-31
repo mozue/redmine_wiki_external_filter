@@ -29,8 +29,9 @@ install:
   - cd ../
   - cp config/database.yml{.example,}
   - unset BUNDLE_GEMFILE
-  - gem install bundler -v "< 2"
-  - bundle install
+  - env
+  - gem install bundler -v "1.17.3"
+  - bundle _1.17.3_ install
   - bin/rake db:setup
   - bin/rake generate_secret_token
   - bin/rake db:migrate
