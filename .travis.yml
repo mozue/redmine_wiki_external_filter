@@ -18,6 +18,9 @@ matrix:
     - name: "Redmine 3.4"
       env:
         - REDMINE_VERSION=3.4.8
+    - name: "Redmine 4.0"
+      env:
+        - REDMINE_VERSION=4.0.1
 
 install:
   - cd ..
@@ -29,7 +32,6 @@ install:
   - cd ../
   - cp config/database.yml{.example,}
   - unset BUNDLE_GEMFILE
-  - env
   - gem install bundler -v "1.17.3"
   - bundle _1.17.3_ install
   - bin/rake db:create
