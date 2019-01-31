@@ -6,7 +6,7 @@ dist: xenial
 
 addons:
   apt:
-    package:
+    packages:
       - graphviz
       - plantuml
 
