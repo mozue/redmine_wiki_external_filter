@@ -32,7 +32,7 @@ install:
   - env
   - gem install bundler -v "1.17.3"
   - bundle _1.17.3_ install
-  - bin/rake db:setup
+  - bin/rake db:create
   - bin/rake generate_secret_token
   - bin/rake db:migrate
 
