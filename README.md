@@ -46,20 +46,22 @@ ones is typically as easy as adding several lines in plugin config file.
 
 ## Installation
 
-1. It's recommended (but not required) to install
-   [popen4](http://popen4.rubyforge.org/) library first as without it plugin is
-   unable to capture stderr output of external command, so it might be hard to debug
-   it if things go wrong.
-   **Note**: If you are using rvm you need to run `bundle install` in your redmine root to install the popen4 gem.
-2. Get sources from [github](http://github.com/cdwertmann/wiki_external_filter).
-3. See [Installing a plugin](http://www.redmine.org/wiki/redmine/Plugins) on
-   Redmine site.
-4. After installation it's **strongly recommended** to go to plugin settings and
-   configure caching: Administration -> Plugins -> Wiki External Filter Plugin: Configure and follow instructions.
+Download source and install required libraries:
+
+```console
+% git clone https://github.com/clear-code/redmine_wiki_external_filter plugins/wiki_external_filter
+% bundle install
+```
+
+Restart your Redmine.
+
+Then go to
+https://your-redmine/settings/plugin/wiki_external_filter
+and configure.
 
 Specific filters installation instructions are below.
 
-## Predefined Macros
+## Predefined macros
 
 ### tikz
 
@@ -222,7 +224,7 @@ Rendered output:
 
 ## Writing new macros
 
-New macros can easily be added via wiki_external_filter.yml config file.
+New macros can easily be added via wiki\_external\_filter.yml config file.
 
 Every macro may have multiple commands processing the same input - for example for **video** macro two commands are used: first one extracts thumbnail and second one converts the video.
 
@@ -238,11 +240,11 @@ Additionally, ``cache_seconds`` parameter specifies the number of seconds comman
 output result should be cached, use zero to disable caching for this macro.
 
 The way filter output is visualized is controlled via
-app/views/wiki_external_filter/_macro_*.html.erb files. The view to use is selected by  ``template`` macro option in config. The view can use all commands outputs for particular macro.
+`app/views/wiki_external_filter/_macro_*.html.erb` files. The view to use is selected by  `template` macro option in config. The view can use all commands outputs for particular macro.
 
-``replace_attachments`` tells plugin that it should parse the text passed to the macro and replace all occurrences of strings matching attachments names with their physical paths on disk.
+`replace_attachments` tells plugin that it should parse the text passed to the macro and replace all occurrences of strings matching attachments names with their physical paths on disk.
 
-Macro argument is de-escaped via CGI.unescapeHTML call prior to being fed to
+Macro argument is de-escaped via `CGI.unescapeHTML` call prior to being fed to
 filter.
 
 ## Current bugs/issues
@@ -271,4 +273,3 @@ filter.
   wiki\_external\_filter. Latex is not, but only due to the fact I do not have
   latex installed nor currently have a need in that: adding macro that
   performs latex filtering should be trivial.
-
