@@ -1,19 +1,37 @@
-                 Redmine Wiki External Filter Plugin
-                 ===================================
-              Copyright (C) 2010 Alexander Tsvyashchenko,
-              http://www.ndl.kiev.ua - see COPYRIGHT.txt
+# Redmine Wiki External Filter plugin
 
-NOT THE ORIGINAL
-================
+This is a fork maintained by the followings:
 
-This is a fork.
+  * Kouhei Sutou <kou@clear-code.com>
 
-**NOTE: tested on Redmine v3.0.1. Only tested plantuml, graphviz and PGF-TikZ.**
+This work is sponsored by Shimadzu Corporation.
 
-**NOTE: the syntax has been changed from the original (no parentheses around the arguments).**
+## The original
 
-Overview
-========
+You can find the original version here:
+https://github.com/ndl/wiki_external_filter
+
+The original author is Alexander Tsvyashchenko. Here is the
+information for the original version from
+[COPYRIGHT.txt](https://github.com/ndl/wiki_external_filter/blob/master/COPYRIGHT.txt):
+
+Copyright (C) 2010 Alexander Tsvyashchenko, http://www.ndl.kiev.ua
+
+* Based on wiki\_latex_plugin by Nils Israel <info@nils-israel.net>
+* Based on wiki\_graphviz\_plugin by tckz <at.tckz@gmail.com>
+* Includes FlowPlayer flash player, see http://www.flowplayer.org
+* Includes CSS Browser Selector, see http://rafael.adm.br/css_browser_selector/
+* Thanks to Eike for his "Cross-Browser SVG Issues" article,
+  http://e.metaclarity.org/52/cross-browser-svg-issues/
+
+This fork picks useful improvements from the following forks:
+
+  * https://github.com/maxrossello/wiki_external_filter/
+  * https://github.com/simonswine/wiki_external_filter/
+
+License is GPLv2 or later. See COPYING for details.
+
+## Overview
 
 This plugin allows defining macros that process macro argument using
 external filter program and render its result in Redmine wiki.
@@ -26,8 +44,7 @@ content and processes it using the filter.
 Macros already bundled with current release are listed below, but adding new
 ones is typically as easy as adding several lines in plugin config file.
 
-Installation
-============
+## Installation
 
 1. It's recommended (but not required) to install
    [popen4](http://popen4.rubyforge.org/) library first as without it plugin is
@@ -42,19 +59,16 @@ Installation
 
 Specific filters installation instructions are below.
 
-Prefedined Macros
-=================
+## Predefined Macros
 
-tikz
-----
+### tikz
 
 Tikz/PGF is based on description in http://www.hostedredmine.com/projects/alxa/wiki/PGF_TIKZ_Redmine and latextool.sh is taken from there.
 The actual latextool.sh which has been tested here is under plugins/wiki_external_filter/bin/latextool.sh
 
 This part is unstable at the moment due to a lot of possiblities in tikz there only some pictures possible. You might need to adjust latextool.sh for loading libraries for specific tikz picture.
 
-plantuml
---------
+### plantuml
 
 [PlantUML](http://plantuml.sourceforge.net/) is a tool to render UML diagrams
 from their textual representation. It's assumed that it can be invoked via
@@ -90,8 +104,8 @@ Rendered output:
 
 ![PlantUML output](http://www.ndl.kiev.ua/downloads/wiki_plantuml_sample.png)
 
-dot or neato
-------------
+### dot or neato
+
 [Graphviz](http://www.graphviz.org/) is a tool for graph-like structures
 visualization. It's assumed that it can be called as /usr/bin/dot.
 
@@ -131,8 +145,7 @@ Rendered output:
 
 ![Graphviz output](http://www.ndl.kiev.ua/downloads/wiki_graphviz_sample.png)
 
-ritex
------
+### ritex
 
 Combination of [Ritex: a Ruby WebTeX to MathML converter](http://ritex.rubyforge.org/) and [SVGMath](http://www.grigoriev.ru/svgmath/) that takes WebTeX
 formula specification as input and produces SVG file as output.
@@ -154,8 +167,7 @@ Rendered output:
 
 ![Ritex output](http://www.ndl.kiev.ua/downloads/wiki_ritex_sample.png)
 
-video and video_url
--------------------
+### video and video_url
 
 These macros use [ffmpeg](http://ffmpeg.org) to convert any supported video file to FLV format and display it on wiki using [FlowPlayer](http://www.flowplayer.org) flash player. *video* macro takes file path on server as its input, as well as attachments names from current wiki page, while *video_url* expects full URL to the video to convert & show.
 
@@ -191,8 +203,7 @@ Rendered output (before player is embedded by clicking on the image, using Flowp
 
 ![Video output](http://www.ndl.kiev.ua/downloads/wiki_video_url_sample.jpg)
 
-fortune
--------
+### fortune
 
 [Fortune](http://en.wikipedia.org/wiki/Fortune_(Unix)) is a simple program
 that displays a random message from a database of quotations.
@@ -209,8 +220,7 @@ Rendered output:
 
 ![Fortune output](http://www.ndl.kiev.ua/downloads/wiki_fortune_sample.png)
 
-Writing new macros
-==================
+## Writing new macros
 
 New macros can easily be added via wiki_external_filter.yml config file.
 
@@ -235,8 +245,7 @@ app/views/wiki_external_filter/_macro_*.html.erb files. The view to use is selec
 Macro argument is de-escaped via CGI.unescapeHTML call prior to being fed to
 filter.
 
-Current bugs/issues
-===================
+## Current bugs/issues
 
 1. SVG support is more complex it should have been if all browsers had played by the rules - currently quite some trickery with different XHTML elements/CSS tricks is used to show SVGs properly in major browsers. Of course, there's not that much that can be done for IE as it does not support SVG at all, but now at least the plugin substitutes raster fall-back image for IE if it is available.
 2. For formula support, theoretically ritex alone is sufficient if you have
@@ -255,11 +264,11 @@ Current bugs/issues
 4. RoR caching support is a mess: no way to expire old files from file-based
    cache??? Are you joking???
 
-Additional info
-===============
+## Additional info
 
 1. Somewhat similar plugins (although with narrower scope) are [graphviz plugin](http://github.com/tckz/redmine-wiki_graphviz_plugin) and [latex plugin](http://www.redmine.org/boards/3/topics/4987).
   Graphviz functionality is mostly covered by current version of
-  wiki_external_filter. Latex is not, but only due to the fact I do not have
+  wiki\_external\_filter. Latex is not, but only due to the fact I do not have
   latex installed nor currently have a need in that: adding macro that
   performs latex filtering should be trivial.
+
