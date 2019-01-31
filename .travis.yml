@@ -36,5 +36,5 @@ install:
   - bin/rake generate_secret_token
   - bin/rake db:migrate
 
-test:
+script:
   - bin/rake wiki_external_filter:test
