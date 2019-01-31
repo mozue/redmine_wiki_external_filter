@@ -78,11 +78,6 @@ module WikiExternalFilter
     end
 
     def build_forced(args, text, attachments, info)
-
-          # joining splitted args
-          # not necessary from v2.1.0
-          # text 		  = text.join(", ")
-
       if info['replace_attachments'] and attachments
         attachments.each do |att|
           text.gsub!(/#{att.filename.downcase}/i, att.diskfile)
