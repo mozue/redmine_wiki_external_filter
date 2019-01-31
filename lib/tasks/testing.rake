@@ -3,6 +3,6 @@ namespace :wiki_external_filter do
   Rake::TestTask.new :test => "db:test:prepare" do |t|
     t.libs << "test"
     t.verbose = true
-    t.pattern = "plugins/wiki_external_filter/test/helpers/**/*_test.rb"
+    t.pattern = "plugins/wiki_external_filter/test/**/*_test.rb"
   end
 end

@@ -1,11 +1,8 @@
-require "test_helper"
+require_relative "../test_helper"
 
 class WikiExternalFilterMacrosTest < ActionView::TestCase
+  include WikiExternalFilterTestHelper
   include ERB::Util
-
-  def fixture_path(*components)
-    File.join(__dir__, "..", "fixtures", *components)
-  end
 
   setup do
     Setting.plugin_wiki_external_filter["cache_seconds"] = 60
