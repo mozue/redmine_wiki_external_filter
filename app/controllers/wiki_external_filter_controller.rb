@@ -1,15 +1,11 @@
-
 class WikiExternalFilterController < ApplicationController
-
-  include WikiExternalFilterHelper
-
   def filter
     name = params[:name]
     macro = params[:macro]
     index = params[:index].to_i
     filename = params[:filename] ? params[:filename] : name
-    config = load_config
-    cache_key = self.construct_cache_key(macro, name)
+    config = WikiExternalFilter::Filter.config
+    cache_key = WikiExternalFilter::Filter.construct_cache_key(macro, name)
     content = Rails.cache.read cache_key
 
     Rails.logger.debug "Config:#{config} Key: #{cache_key} Content: #{content}"

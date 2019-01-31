@@ -1,5 +1,5 @@
-require 'redmine'
-require "#{Rails.root}/plugins/wiki_external_filter/app/helpers/wiki_external_filter_helper"
+require_dependency "wiki_external_filter/filter"
+require_dependency "wiki_external_filter/renderer"
 
 Rails.logger.info 'Starting wiki_external_filter plugin for Redmin'
 
@@ -13,7 +13,7 @@ Redmine::Plugin.register :wiki_external_filter do
   
   settings :default => {'cache_seconds' => '0'}, :partial => 'wiki_external_filter/settings'
 
-  config = WikiExternalFilterHelper.load_config
+  config = WikiExternalFilter::Filter.config
   Rails.logger.debug "Config: #{config.inspect}"
 
   config.keys.each do |name|
@@ -22,8 +22,8 @@ Redmine::Plugin.register :wiki_external_filter do
       info = config[name]
       desc info['description']
       macro name do |obj, args, text|
-        m = WikiExternalFilterHelper::Macro.new(self, args, text, obj.respond_to?('page') ? obj.page.attachments : nil, name, info)
-        m.render.html_safe
+        m = WikiExternalFilter::Renderer.new(self, args, text, obj.respond_to?('page') ? obj.page.attachments : nil, name, info)
+        m.render
       end
       # code borrowed from wiki latex plugin
       # code borrowed from wiki template macro
@@ -34,7 +34,7 @@ Redmine::Plugin.register :wiki_external_filter do
         @included_wiki_pages ||= []
         raise 'Circular inclusion detected' if @included_wiki_pages.include?(page.title)
         @included_wiki_pages << page.title
-        m = WikiExternalFilterHelper::Macro.new(self, args, page.content.text, page.attachments, name, info)
+        m = WikiExternalFilter::Renderer.new(self, args, page.content.text, page.attachments, name, info)
         @included_wiki_pages.pop
         m.render_block(args.to_s)
       end

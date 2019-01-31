@@ -1,6 +1,6 @@
 require "test_helper"
 
-class WikiExternalFilterHelperTest < ActionView::TestCase
+class WikiExternalFilterMacrosTest < ActionView::TestCase
   include ERB::Util
 
   def fixture_path(*components)
@@ -28,7 +28,8 @@ class WikiExternalFilterHelperTest < ActionView::TestCase
 #{source}
 }}
                      TEXTILE
-    cache = Rails.cache.read(["wiki_external_filter", "plantuml", name].join("_"))
+    cache_key = WikiExternalFilter::Filter.construct_cache_key("planetuml", name)
+    cache = Rails.cache.read(cache_key)
     assert_equal(Magick::Image.read(fixture_path("plantuml.png")),
                  Magick::Image.read_inline(Base64.encode64(cache[index])))
   end
