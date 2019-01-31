@@ -1,4 +1,5 @@
 require 'digest/sha2'
+require 'open4'
 
 module WikiExternalFilter
   class Filter
@@ -97,26 +98,13 @@ module WikiExternalFilter
         c = nil
         e = nil
 
-        # If popen4 is available - use it as it provides stderr
-        # redirection so we can get more info in the case of error.
-        begin
-          require 'open4'
-          Open4::popen4(out['command']) { |pid, fin, fout, ferr|
-            fin.puts out['prolog'] if out.key?('prolog')
-            fin.write text
-            fin.write "\n"+out['epilog'] if out.key?('epilog')
-            fin.close
-            c, e = [fout.read, ferr.read]
-          }
-        rescue LoadError
-          IO.popen(out['command'], 'r+b') { |f|
-            f.puts out['prolog']+"\n" if out.key?('prolog')
-            f.write text
-            f.write "\n"+out['epilog'] if out.key?('epilog')
-            f.close_write
-            c = f.read
+        Open4::popen4(out['command']) { |pid, fin, fout, ferr|
+          fin.puts out['prolog'] if out.key?('prolog')
+          fin.write text
+          fin.write "\n"+out['epilog'] if out.key?('epilog')
+          fin.close
+          c, e = [fout.read, ferr.read]
         }
-        end
 
         Rails.logger.debug("child status: sig=#{$?.termsig}, exit=#{$?.exitstatus}")
 
