@@ -30,6 +30,7 @@ matrix:
       env:
         - REDMINE_VERSION=4.0-stable
       install:
+        - bundle install
         - bin/rails db:create
         - bin/rails generate_secret_token
         - bin/rails db:migrate
