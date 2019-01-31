@@ -3,7 +3,7 @@ development: &development
     description: "Constructs UML diagram image from its textual description in PlantUML language, see http://plantuml.sourceforge.net"
     template: image
     outputs:
-      - command: "/usr/bin/plantuml -pipe"
+      - command: "plantuml -pipe"
         content_type: "image/png"
         prolog: "@startuml"
         epilog: "@enduml"
@@ -12,14 +12,14 @@ development: &development
     template: image
     replace_attachments: true
     outputs:
-      - command: "/usr/bin/latextool.sh -t"
+      - command: "latextool.sh -t"
         content_type: "image/svg+xml"
   le:
     description: "Converts latex excerpts to png. It requires latex and divpng."
     template: image
     replace_attachments: true
     outputs:
-      - command: "/usr/bin/latextool.sh -e"
+      - command: "latextool.sh -e"
         content_type: "image/png"
 
   latex:
@@ -27,27 +27,27 @@ development: &development
     template: image
     replace_attachments: true
     outputs:
-      - command: "/usr/bin/latextool.sh"
+      - command: "latextool.sh"
         content_type: "image/svg+xml"
   graphviz:
     description: "Constructs graph image from its textual description in DOT language, see http://www.graphviz.org"
     template: image
     outputs:
-      - command: "/usr/bin/dot -Tsvg"
+      - command: "dot -Tsvg"
         content_type: "image/svg+xml"
-    #  - command: "/usr/bin/dot -Tpng"
+    #  - command: "dot -Tpng"
     #    content_type: "image/png"
   gneato:
     description: "Constructs graph image from its textual description in NEATO language, see http://www.graphviz.org"
     template: image
     outputs:
-      - command: "/usr/bin/neato -Tsvg"
+      - command: "neato -Tsvg"
         content_type: "image/svg+xml"
   ritex:
     description: "Converts WebTeX expression to MathML, see http://ritex.rubyforge.org/"
     template: svg
     outputs:
-      - command: "(echo '<!DOCTYPE math PUBLIC \"-//W3C//DTD MathML 2.0//EN\" \"http://www.w3.org/Math/DTD/mathml2/mathml2.dtd\">'; /usr/bin/ritex) | xmllint --noent --nonet --catalogs --loaddtd - | sed 's/^<!DOCTYPE.\\+$//' | /usr/bin/math2svg"
+      - command: "(echo '<!DOCTYPE math PUBLIC \"-//W3C//DTD MathML 2.0//EN\" \"http://www.w3.org/Math/DTD/mathml2/mathml2.dtd\">'; ritex) | xmllint --noent --nonet --catalogs --loaddtd - | sed 's/^<!DOCTYPE.\\+$//' | math2svg"
         content_type: "image/svg+xml"
   video:
     description: "Converts video file given by its filename to FLV and displays it via Flowplayer"
@@ -75,11 +75,11 @@ development: &development
     template: text
     cache_seconds: 0
     outputs:
-      - command: "/usr/bin/fortune"
+      - command: "fortune"
         content_type: "text/plain"
 
 test:
-  type: mock
+  <<: *development
 
 production:
   <<: *development

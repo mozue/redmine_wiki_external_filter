@@ -1,0 +1,37 @@
+notifications:
+  webhooks:
+    - https://webhook.commit-email.info/
+
+dist: xenial
+
+addons:
+  apt:
+    package:
+      - graphviz
+      - plantuml
+
+service:
+  - mysql
+
+matrix:
+  include:
+    - name: "Redmine 3.4"
+      env:
+        - REDMINE_VERSION=3.4.8
+
+before_script:
+  - cd ..
+  - wget http://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz
+  - tar xf redmine-${REDMINE_VERSION}.tar.gz
+  - ln -s redmine-${REDMINE_VERSION} redmine
+  - cd redmine/plugins
+  - ln -s ../../redmine_wiki_external_filter wiki_external_filter
+  - cd ../
+  - cp config/database.yml{.example,}
+  - bundle install
+  - bin/rake db:setup
+  - bin/rake generate_secret_token
+  - bin/rake db:migrate
+
+test:
+  - bin/rake wiki_external_filter:test
