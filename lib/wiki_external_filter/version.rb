@@ -16,5 +16,5 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 module WikiExternalFilter
-  VERSION = "1.0.0"
+  VERSION = "1.0.1"
 end
