@@ -1,9 +1,26 @@
-<img class='svg <%= render_type == 'inline' ? "externalfilterinline" : "" %>' src='<%= url_for(:controller => 'wiki_external_filter', :action => 'filter', :macro => macro, :name => name, :index => 0) %>' alt='<%= h source %>' />
-<object class='svgobject <%= render_type == 'inline' ? "externalfilterinline" : "" %>' name='<%= name %>' data='<%= url_for(:controller => 'wiki_external_filter', :action => 'filter', :macro => macro, :name => name, :index => 0) %>' type='<%= content_types[0] %>' title="<%= h source %>">
+<img
+  class="svg <%= render_type == "inline" ? "externalfilterinline" : "" %>"
+  src="<%= wiki_external_filter_path(:macro => macro,
+                                     :name => name,
+                                     :index => 0) %>"
+  alt="<%= source %>">
+<object
+  class="svgobject <%= render_type == "inline" ? "externalfilterinline" : "" %>"
+  name="<%= name %>"
+  data="<%= wiki_external_filter_path(:macro => macro,
+                                      :name => name,
+                                      :index => 0) %>"
+  type="<%= content_types[0] %>"
+  title="<%= source %>">
 <%
   if content.size > 1
 %>
-    <img<%= raw render_type == 'inline' ? " class='externalfilterinline'" : "" %> src='<%= url_for(:controller => 'wiki_external_filter', :action => 'filter', :macro => macro, :name => name, :index => 1) %>' alt='<%= h source %>' />
+  <img
+    class="<%= render_type == "inline" ? "externalfilterinline" : "" %>"
+    src="<%= wiki_external_filter_path(:macro => macro,
+                                       :name => name,
+                                       :index => 1) %>"
+    alt="<%= source %>">
 <%
   end
 %>
