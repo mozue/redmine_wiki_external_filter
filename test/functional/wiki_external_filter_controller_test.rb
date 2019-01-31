@@ -11,7 +11,7 @@ class WikiExternalFilterControllerTest < Redmine::ControllerTest
     name = Digest::SHA256.hexdigest(source)
     filter = WikiExternalFilter::Filter.new
     filter.build([], source, nil, macro, info.merge("cache_seconds" => 60))
-    get :filter, index: index, macro: macro, name: name
+    get(:filter, params: {index: index, macro: macro, name: name})
     assert_response(:success)
     assert_equal("image/png", @response.content_type)
     assert_equal(plantuml(source),

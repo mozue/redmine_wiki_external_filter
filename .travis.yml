@@ -17,26 +17,33 @@ matrix:
   include:
     - name: "Redmine 3.4"
       env:
-        - REDMINE_VERSION=3.4.8
+        - REDMINE_VERSION=3.4-stable
+      install:
+        - gem install bundler -v "1.17.3"
+        - bundle _1.17.3_ install
+        - bin/rake db:create
+        - bin/rake generate_secret_token
+        - bin/rake db:migrate
+      script:
+        - bin/rake wiki_external_filter:test
     - name: "Redmine 4.0"
       env:
-        - REDMINE_VERSION=4.0.1
+        - REDMINE_VERSION=4.0-stable
+      install:
+        - bin/rails db:create
+        - bin/rails generate_secret_token
+        - bin/rails db:migrate
+      script:
+        - bin/rails wiki_external_filter:test
 
-install:
+before_install:
   - cd ..
-  - wget http://www.redmine.org/releases/redmine-${REDMINE_VERSION}.tar.gz
-  - tar xf redmine-${REDMINE_VERSION}.tar.gz
-  - ln -s redmine-${REDMINE_VERSION} redmine
+  - git clone
+      --depth 1
+      --branch ${REDMINE_VERSION}
+      https://github.com/redmine/redmine.git
   - cd redmine/plugins
   - ln -s ../../redmine_wiki_external_filter wiki_external_filter
   - cd ../
   - cp config/database.yml{.example,}
   - unset BUNDLE_GEMFILE
-  - gem install bundler -v "1.17.3"
-  - bundle _1.17.3_ install
-  - bin/rake db:create
-  - bin/rake generate_secret_token
-  - bin/rake db:migrate
-
-script:
-  - bin/rake wiki_external_filter:test
