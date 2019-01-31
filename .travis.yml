@@ -28,7 +28,7 @@ install:
   - ln -s ../../redmine_wiki_external_filter wiki_external_filter
   - cd ../
   - cp config/database.yml{.example,}
-  - pwd
+  - unset BUNDLE_GEMFILE
   - cat Gemfile
   - bundle install
   - bin/rake db:setup
