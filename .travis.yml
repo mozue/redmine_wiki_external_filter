@@ -29,6 +29,7 @@ install:
   - cd ../
   - cp config/database.yml{.example,}
   - pwd
+  - cat Gemfile
   - bundle install
   - bin/rake db:setup
   - bin/rake generate_secret_token
