@@ -54,7 +54,7 @@ module WikiExternalFilter
         result[:content] = content
         Rails.logger.debug "from cache: #{cache_key}"
       else
-        result = self.build_forced(args, text, attachments, info)
+        result = build_forced(args, text, attachments, info)
         if result[:status]
           if expires > 0
             begin
