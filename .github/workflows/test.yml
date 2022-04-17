@@ -59,6 +59,8 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true
+        env:
+          BUNDLE_GEMFILE: ${{ github.workspace }}/../redmine/Gemfile
       - name: Install
         run: |
           cd ../redmine
