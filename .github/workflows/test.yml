@@ -43,6 +43,9 @@ jobs:
             graphviz \
             mysql-server \
             plantuml
+      - name: Run MySQL
+        run: |
+          sudo systemctl start mysql
       - name: Prepare Redmine
         run: |
           cd ..
@@ -64,7 +67,6 @@ jobs:
       - name: Install
         run: |
           cd ../redmine
-          bundle install
           bin/rails db:create
           bin/rails generate_secret_token
           bin/rails db:migrate
