@@ -46,6 +46,12 @@ jobs:
       - name: Run MySQL
         run: |
           sudo systemctl start mysql
+      - name: Reset MySQL's root password
+        run: |
+          sudo mysql \
+            --defaults-file=/etc/mysql/debian.cnf \
+            -e "ALTER USER 'root'@'localhost' \
+                IDENTIFIED WITH caching_sha2_password BY ''"
       - name: Prepare Redmine
         run: |
           cd ..
