@@ -74,6 +74,13 @@ jobs:
           bin/rails db:create
           bin/rails generate_secret_token
           bin/rails db:migrate
+      - name: Enable Redmine's cache for test
+        run: |
+          cd ../redmine
+          sed -i'' \
+            -e 's/\(config\.action_controller\.perform_caching = \)false/\1true/g' \
+            -e 's/\(config\.cache_store = \):null_store/\1:memory_store/g' \
+            config/environments/test.rb
       - name: Test
         run: |
           cd ../redmine
