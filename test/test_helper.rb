@@ -9,7 +9,7 @@ module WikiExternalFilterTestHelper
     input.flush
     input.rewind
     system("plantuml", "-pipe", in: input, out: output)
-    Magick::Image.read(output.path)
+    MiniMagick::Image.read(output)
   end
 
   def dot(source)
@@ -19,6 +19,6 @@ module WikiExternalFilterTestHelper
     input.flush
     input.rewind
     system("dot", "-Tsvg", in: input, out: output)
-    Magick::Image.read(output.path)
+    MiniMagick::Image.read(output)
   end
 end
