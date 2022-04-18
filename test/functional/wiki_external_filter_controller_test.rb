@@ -15,6 +15,6 @@ class WikiExternalFilterControllerTest < Redmine::ControllerTest
     assert_response(:success)
     assert_equal("image/png", @response.content_type)
     assert_equal(plantuml(source),
-                 Magick::Image.read_inline(Base64.encode64(@response.body)))
+                 MiniMagick::Image.read(@response.body))
   end
 end
