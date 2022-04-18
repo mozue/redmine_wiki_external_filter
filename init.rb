@@ -19,10 +19,6 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-require_dependency "wiki_external_filter/version"
-require_dependency "wiki_external_filter/filter"
-require_dependency "wiki_external_filter/renderer"
-
 Rails.logger.info 'Starting wiki_external_filter plugin for Redmine'
 
 Redmine::Plugin.register :wiki_external_filter do
@@ -30,7 +26,7 @@ Redmine::Plugin.register :wiki_external_filter do
   author 'Kouhei Sutou, Alexander Tsvyashchenko (the original author)'
   description 'Processes given text using external command and renders its output'
   author_url 'https://github.com/clear-code/redmine_wiki_external_filter'
-  version WikiExternalFilter::VERSION
+  version WikiExternalFilter::Version::STRING
   requires_redmine :version_or_higher => '3.4.0'
 
   settings :default => {'cache_seconds' => '60'}, :partial => 'wiki_external_filter/settings'
