@@ -3,7 +3,7 @@
 # Copyright (C) 2013  zzloiz <www.zloi@gmail.com>
 # Copyright (C) 2013  Christoph Dwertmann <cdwertmann@gmail.com>
 # Copyright (C) 2013  YOSHITANI Mitsuhiro <luckval@gmail.com>
-# Copyright (C) 2019  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2019-2024  Sutou Kouhei <kou@clear-code.com>
 # Copyright (C) 2019  Shimadzu Corporation
 #
 # This program is free software; you can redistribute it and/or modify
@@ -41,7 +41,7 @@ module WikiExternalFilter
       private
       def load_config
         config_file = "#{Rails.root}/config/wiki_external_filter.yml"
-        unless File.exists?(config_file)
+        unless File.exist?(config_file)
           config_file = File.expand_path("../../config/wiki_external_filter.yml",
                                          __dir__)
         end
