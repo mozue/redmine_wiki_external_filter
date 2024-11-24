@@ -1,4 +1,4 @@
-# Copyright (C) 2019  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2019-2024  Sutou Kouhei <kou@clear-code.com>
 # Copyright (C) 2019  Shimadzu Corporation
 #
 # This program is free software; you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 module WikiExternalFilter
   module Version
-    STRING = "1.0.1"
+    STRING = "1.0.2"
   end
 
   # For backward compatibility
