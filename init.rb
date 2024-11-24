@@ -2,7 +2,7 @@
 # Copyright (C) 2012  mkinski <miko.kinski@yahoo.de>
 # Copyright (C) 2012  zzloiz <www.zloi@gmail.com>
 # Copyright (C) 2013  Christoph Dwertmann <cdwertmann@gmail.com>
-# Copyright (C) 2019  Kouhei Sutou <kou@clear-code.com>
+# Copyright (C) 2019-2024  Sutou Kouhei <kou@clear-code.com>
 # Copyright (C) 2019  Shimadzu Corporation
 #
 # This program is free software; you can redistribute it and/or modify
@@ -23,11 +23,11 @@ Rails.logger.info 'Starting wiki_external_filter plugin for Redmine'
 
 Redmine::Plugin.register :wiki_external_filter do
   name 'Wiki External Filter plugin'
-  author 'Kouhei Sutou, Alexander Tsvyashchenko (the original author)'
+  author 'Sutou Kouhei, Alexander Tsvyashchenko (the original author)'
   description 'Processes given text using external command and renders its output'
   author_url 'https://github.com/clear-code/redmine_wiki_external_filter'
   version WikiExternalFilter::Version::STRING
-  requires_redmine :version_or_higher => '3.4.0'
+  requires_redmine :version_or_higher => '5.0.0'
 
   settings :default => {'cache_seconds' => '60'}, :partial => 'wiki_external_filter/settings'
 
