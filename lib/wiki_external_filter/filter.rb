@@ -45,7 +45,7 @@ module WikiExternalFilter
           config_file = File.expand_path("../../config/wiki_external_filter.yml",
                                          __dir__)
         end
-        YAML.load_file(config_file)[Rails.env]
+        ActiveSupport::ConfigurationFile.parse(config_file)[Rails.env]
       end
     end
 
