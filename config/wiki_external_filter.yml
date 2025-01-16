@@ -3,8 +3,8 @@ development: &development
     description: "Constructs UML diagram image from its textual description in PlantUML language, see http://plantuml.sourceforge.net"
     template: image
     outputs:
-      - command: "plantuml -pipe"
-        content_type: "image/png"
+      - command: "plantuml -tsvg -pipe"
+        content_type: "image/svg+xml"
         prolog: "@startuml"
         epilog: "@enduml"
   tikz:
