@@ -1,0 +1,3 @@
+#!/bin/bash
+export LANG=ja_JP.UTF-8;
+/usr/bin/java -Djava.io.tmpdir=/var/tmp -Djava.awt.headless=true -jar /usr/src/redmine/plugins/wiki_external_filter/plantuml.jar -charset UTF-8 ${@}

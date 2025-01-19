@@ -1,0 +1,4 @@
+@startuml
+    ああああ -> いいいい: test
+@enduml
+
